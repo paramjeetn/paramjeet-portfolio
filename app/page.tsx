@@ -1,65 +1,175 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const featured = [
+  {
+    href: "/projects/promptforge",
+    label: "PromptForge",
+    desc: "Distributed LLM batch processing on GKE with TCP-inspired adaptive rate learning.",
+  },
+  {
+    href: "/projects/pr-scrutiny",
+    label: "PR Scrutiny",
+    desc: "GitHub App running 4 specialist agents in parallel on every pull request.",
+  },
+  {
+    href: "/writing/tcp-rate-limiting-llms",
+    label: "Why I modeled LLM rate limiting on TCP",
+    desc: "The thinking behind PromptForge's congestion control system.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div style={{ paddingTop: "3rem" }}>
+      {/* Name + tagline */}
+      <h1
+        style={{
+          fontSize: "1.5rem",
+          fontWeight: 600,
+          letterSpacing: "-0.03em",
+          margin: "0 0 0.5rem",
+          color: "var(--fg)",
+        }}
+      >
+        Paramjeet Pradhan
+      </h1>
+      <p
+        style={{
+          fontSize: "0.9375rem",
+          color: "var(--muted)",
+          margin: "0 0 2.5rem",
+          lineHeight: 1.6,
+        }}
+      >
+        I build software for people — developers, consumers, anyone with a real
+        problem that a well-made tool can quietly fix. The feedback loop that keeps
+        me going is talking to users: their frustration, their delight, the moment
+        something clicks. That&apos;s what the work is for.
+        <br /><br />
+        4th-year CS undergrad. I work at the intersection of LLMs and scalable
+        infrastructure — agentic pipelines, distributed systems, developer tooling.
+      </p>
+
+      {/* Links row */}
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          marginBottom: "3.5rem",
+          flexWrap: "wrap",
+        }}
+      >
+        {[
+          { href: "mailto:paramjeetpradhan.work@gmail.com", label: "email" },
+          { href: "https://github.com/paramjeetn", label: "github" },
+          {
+            href: "https://www.linkedin.com/in/paramjeetpradhan/",
+            label: "linkedin",
+          },
+        ].map(({ href, label }) => (
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
+            key={label}
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
+            style={{
+              fontSize: "0.875rem",
+              color: "var(--accent)",
+              textDecoration: "none",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            {label} ↗
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        ))}
+      </div>
+
+      {/* Featured */}
+      <p
+        style={{
+          fontSize: "0.75rem",
+          fontWeight: 500,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--muted)",
+          margin: "0 0 1rem",
+        }}
+      >
+        Featured
+      </p>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+        {featured.map(({ href, label, desc }) => (
+          <Link
+            key={href}
+            href={href}
+            style={{
+              display: "block",
+              padding: "0.875rem 0",
+              borderTop: "1px solid var(--border)",
+              textDecoration: "none",
+            }}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: "1rem",
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: "0.9375rem",
+                    fontWeight: 500,
+                    color: "var(--fg)",
+                  }}
+                >
+                  {label}
+                </span>
+                <p
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "var(--muted)",
+                    margin: "0.2rem 0 0",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {desc}
+                </p>
+              </div>
+              <span
+                style={{ color: "var(--muted)", fontSize: "0.875rem", flexShrink: 0 }}
+              >
+                →
+              </span>
+            </div>
+          </Link>
+        ))}
+        <div style={{ borderTop: "1px solid var(--border)" }} />
+      </div>
+
+      {/* Bottom links */}
+      <div
+        style={{
+          marginTop: "2.5rem",
+          display: "flex",
+          gap: "1.25rem",
+        }}
+      >
+        <Link
+          href="/projects"
+          style={{ fontSize: "0.875rem", color: "var(--accent)", textDecoration: "none" }}
+        >
+          all projects →
+        </Link>
+        <Link
+          href="/writing"
+          style={{ fontSize: "0.875rem", color: "var(--accent)", textDecoration: "none" }}
+        >
+          all writing →
+        </Link>
+      </div>
     </div>
   );
 }
