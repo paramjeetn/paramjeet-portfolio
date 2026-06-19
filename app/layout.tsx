@@ -17,11 +17,14 @@ export const metadata: Metadata = {
   title: "Paramjeet Pradhan",
   description:
     "Building intelligent systems at the intersection of LLMs and scalable infrastructure.",
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Paramjeet Pradhan",
     description:
       "Building intelligent systems at the intersection of LLMs and scalable infrastructure.",
-    url: "https://paramjeet.dev",
+    url: "https://paramjeet.myself.engineer",
     siteName: "Paramjeet Pradhan",
   },
 };
