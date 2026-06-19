@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Paramjeet Pradhan",
   description:
     "Building intelligent systems at the intersection of LLMs and scalable infrastructure.",
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     title: "Paramjeet Pradhan",
     description:
